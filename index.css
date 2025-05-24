@@ -25,3 +25,13 @@ body {
     color: grey;
     border: 2px solid grey;
 }
+
+@media print {
+    .toggleOn {
+        border: none;
+    }
+
+    .toggleOff {
+        display: none;
+    }
+}
