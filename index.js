@@ -5,10 +5,20 @@ function clickToggle() {
     
     if (this.getAttribute("class") == "toggleOn") {
         this.setAttribute("class", "toggleOff");
+        /* NG
+        for (const child of this.children) {
+            child.setAttribute("class", "toggleOff");
+        }
+        */
     } else if (this.getAttribute("class") == "toggleOff") {
         this.setAttribute("class", "toggleOn");
+        /* NG
+        for (const child of this.children) {
+            child.setAttribute("class", "toggleOn");
+        }
+        */
     } else {
-        console.log("Yo wtf dude");
+        console.log("Selected element had no toggle status.");
     }
     console.log("this.style.class: ", this.getAttribute("class"));
 }
@@ -18,18 +28,35 @@ function initialise() {
 
     const paragraphMatches = document.getElementsByTagName("p");
     const listItemMatches = document.getElementsByTagName("li");
+    const headerMatches = document.getElementsByTagName("h3");
 
-    for (let i = 0; i < paragraphMatches.length; i++) {
-        console.log(paragraphMatches[i].textContent);
-        paragraphMatches[i].addEventListener("click", clickToggle, false)
-        paragraphMatches[i].setAttribute("class", "toggleOn");
+    for (const paragraphElement of paragraphMatches) {
+        // OK console.log(paragraphElement.textContent);
+        paragraphElement.addEventListener("click", clickToggle, false)
+        paragraphElement.setAttribute("class", "toggleOn");
     }
 
-    for (let i = 0; i < listItemMatches.length; i++) {
-        console.log(listItemMatches[i].textContent);
-        listItemMatches[i].addEventListener("click", clickToggle, false)
-        listItemMatches[i].setAttribute("class", "toggleOn");
+    for (const listElement of listItemMatches) {
+        // OK console.log(listElement.textContent);
+        listElement.addEventListener("click", clickToggle, false)
+        listElement.setAttribute("class", "toggleOn");
     }
+
+    for (const headerElement of headerMatches) {
+        // OK console.log(headerElement.textContent);
+        headerElement.addEventListener("click", clickToggle, false)
+        headerElement.setAttribute("class", "toggleOn");
+    }
+
+    /* NG
+    const sectionMatches = document.getElementsByTagName("section");
+
+    for (let i = 0; i < sectionMatches.length; i++) {
+        console.log(sectionMatches[i].textContent);
+        sectionMatches[i].addEventListener("click", clickToggle, false)
+        sectionMatches[i].setAttribute("class", "toggleOn");
+    }
+    */
 }
 
 window.addEventListener("load", initialise, false);
